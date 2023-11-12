@@ -2,7 +2,7 @@
 <br>
 
 <h3> This is the updated Notes of Machine Learning Specialization coursera, The original Notes is taken from aman.ai website. </h3>
-<h3> The original Notes of Aman Chadha is great so i decided to take it and update it w my perspective </h3>
+<h3> The original Notes of Aman Chadha is great so i decided to take it and update it with my perspective </h3>
 
 
 1. [Supervised Machine Learning Regression and Classification](/1-Supervised%20Machine%20Learning%20Regression%20and%20Classification/Supervised%20Machine%20Learning%20Regression%20and%20Classification.md)<br/>
