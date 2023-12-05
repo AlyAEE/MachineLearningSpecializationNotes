@@ -1,6 +1,5 @@
 # Supervised Machine Learning: Regression and Classification
 
-### Table of Contents
 
 - **Machine Learning** is a Field of study that gives computers the ability to learn without being explicitly programmed
 - Machine Learning Algorithms:
