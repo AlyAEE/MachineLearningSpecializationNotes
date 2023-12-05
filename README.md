@@ -1,13 +1,19 @@
-<h1 align="center">Coursera Machine Learning Specialization Notes</h1>
+<h1 align="center">Machine Learning Specialization Notes</h1>
 <br>
 
-<h3> This is the updated Notes of Machine Learning Specialization coursera, The original Notes is taken from aman.ai website. </h3>
-<h3> The original Notes of Aman Chadha is great so i decided to take it and update it with my perspective </h3>
+<h3> This is the updated Notes of Machine Learning Specialization on coursera </h3>
+
+<h3> The original notes is taken from <a href="aman.ai">aman.ai</a> website. </h3>
+
+<h3> I updated the notes with the lastest course offered by <a href="deeplearning.ai">deeplearning.ai</a>, The original notes belongs to <a href="https://www.linkedin.com/in/amanc/">Aman Chadha</a> and <a href="https://www.linkedin.com/in/vinija/">Vinija Jain</a> </h3>
+
+<h3>Original Notes URL: <a href ="https://aman.ai/coursera-ml/">Coursera-ml</a> </h3>
+
 
 
 1. [Supervised Machine Learning Regression and Classification](/1-Supervised%20Machine%20Learning%20Regression%20and%20Classification/Supervised%20Machine%20Learning%20Regression%20and%20Classification.md)<br/>
-2. [Advanced Learning Algorithms](/2-Advanced%20Learning%20Algorithms/)<br/>
-3. [Unsupervised Learning, Recommenders, Reinforcement Learning](/3-Unsupervised%20Learning,%20Recommenders,%20Reinforcement%20Learning/)<br/>
+    
 
-<h3> Author: Chadha, Aman and Jain, Vinija </h3>
-<h3> Url: https://aman.ai/coursera-ml/ </h3>
+2. [Advanced Learning Algorithms](/2-Advanced%20Learning%20Algorithms/Advanced%20ML%20Algorithms%20-%20Machine%20Learning%20Speciali%202e6465981c074f20bf7ace26b198e400.md)<br/>
+
+3. [Unsupervised Learning, Recommenders, Reinforcement Learning](/3-Unsupervised%20Learning,%20Recommenders,%20Reinforcement%20Learning/)<br/>
