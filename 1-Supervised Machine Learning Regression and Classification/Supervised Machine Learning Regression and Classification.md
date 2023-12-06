@@ -115,7 +115,7 @@ Above we can see the breakdown of the life cycle of how a model works.
 
 ---
 
-- Goal: Find the parameters $w, b$ ****that result in the **smallest** possible **value** for the **cost function  $J$**
+- Goal: Find the parameters $w, b$ that result in the **smallest** possible **value** for the **cost function  $J$**
 - Keep in mind the cost function  $J$ will not be in a **1D** space, so minimizing this is not an easy task.
 
 ---
@@ -127,7 +127,7 @@ Above we can see the breakdown of the life cycle of how a model works.
 ### Normal Equation
 
 - An alternative for **gradient descent**, that works only for **linear regression** that solves for $w, b$ without iterations
-- Also training becomes slow when the no. of features is large**(>10000).**
+- Also training becomes slow when the no. of features is large **(>10000).**
 - some machine learning libraries might use **Normal Equation** to implement **Linear Regression**
 
 ### Polynomial Regression
@@ -157,9 +157,9 @@ Above we can see the breakdown of the life cycle of how a model works.
 - **gradient descent** and its variations are used to train, not just **linear regression**, but other more common models in AI.
 - **Gradient descent** can be used to **minimize** any function, but here we will use it to minimize our **cost function** for **linear regression**.
 - How does **Gradient Descent** minimize **linear regression** **cost function**?
-    - Start with some initial guesses for parameters $**w, b**$.
+    - Start with some initial guesses for parameters $w, b$.
     - Computes **gradient** using a single Training example.
-    - Keep changing the values for $**w, b**$ to reduce the **cost function $J(w, b)$**.
+    - Keep changing the values for $w, b$ to reduce the **cost function** $J(w, b)$.
     - Continue until we settle at or near a minimum. Note, some **functions** may have **more than 1 minimum**.
 
 ---
@@ -172,7 +172,7 @@ Above we can see the breakdown of the life cycle of how a model works.
 
 ---
 
-- The **learning rate alpha**, it determines how big of a **step** you take when updating **w** or $**b**$.
+- The **learning rate alpha**, it determines how big of a **step** you take when updating $w$ or $b$.
 - If the **learning rate** is too **small**, you end up taking too many steps to hit the **local minimum** which is inefficient. **Gradient descent** will work but it will be too slow.
 - If the **learning rate** is too **large**, you may take a step that is too **big** as miss the **minimum**. **Gradient descent** will fail to **converge**.
 

@@ -14,6 +14,6 @@
 1. [Supervised Machine Learning Regression and Classification](/1-Supervised%20Machine%20Learning%20Regression%20and%20Classification/Supervised%20Machine%20Learning%20Regression%20and%20Classification.md)<br/>
     
 
-2. [Advanced Learning Algorithms](/2-Advanced%20Learning%20Algorithms/Advanced%20ML%20Algorithms%20-%20Machine%20Learning%20Speciali%202e6465981c074f20bf7ace26b198e400.md)<br/>
+2. [Advanced Learning Algorithms](/2-Advanced%20Learning%20Algorithms/Advanced%20Learning%20Algorithms.md)<br/>
 
 3. [Unsupervised Learning, Recommenders, Reinforcement Learning](/3-Unsupervised%20Learning,%20Recommenders,%20Reinforcement%20Learning/)<br/>
