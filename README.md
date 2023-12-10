@@ -16,4 +16,4 @@
 
 2. [Advanced Learning Algorithms](/2-Advanced%20Learning%20Algorithms/Advanced%20Learning%20Algorithms.md)<br/>
 
-3. [Unsupervised Learning, Recommenders, Reinforcement Learning](/3-Unsupervised%20Learning,%20Recommenders,%20Reinforcement%20Learning/)<br/>
+3. [Unsupervised Learning, Recommenders, Reinforcement Learning](/3-Unsupervised%20Learning,%20Recommenders,%20Reinforcement%20Learning/Unsupervised%20Learning,%20Recommenders,%20Reinforcement%20Learning.md)<br/>
