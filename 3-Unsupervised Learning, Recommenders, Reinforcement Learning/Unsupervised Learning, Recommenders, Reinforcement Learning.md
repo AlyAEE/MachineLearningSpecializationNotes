@@ -199,3 +199,31 @@
     - See what anomalies in the **cross-validation set** the algorithm is failing to detect. And then to look at those examples to see if that can inspire the creation of new **features** that would allow the algorithm to spot. That example takes on unusually large or unusually small values on the new **features**, so that you can now successfully flag those examples as **anomalies**.
     
     ![Untitled](images/Untitled%2028.png)
+
+### Recommendation Systems
+
+-   How to make recommendations in a **recommender system**?
+    
+    ![Untitled](images/image-3.png)
+    
+    - It is important for the system to know which users have rated which movies and which has not.
+    - one simple way to approach the problem is to look at the movies that users have not rated and try to predict how users would rate those movies by recommending to users things that they are more likely to rate as 5 stars.
+- how we can develop a recommender system if we had features of each item?
+    
+    ![Untitled](images/image-2.png)
+    
+    - This is a lot like **linear regression**, except that we're fitting a different **linear regression** model for each of the **4** users in the dataset.
+    
+    ![Untitled](images/image-1.png)
+    
+    - This is how we can formulate the cost function for this algorithm.
+    - We're trying to choose parameters $w$ and $b$  to **minimize** the **squared error** between the predicted rating and the actual rating that was observed.
+    - Since the user hasn't rated all the movies, we're going to sum over only over the values of $i$ where $r(i,j)=1$.
+    - This is very much like the **cost function** we have for **linear regression**
+    - It turns out that for **recommender systems** it would be convenient to actually eliminate this division by $m(j)$ term, $m(j)$ is just a constant in this expression, Even if you take it out, you should end up with the same value of $w$  and $b$ .
+    
+    ![Untitled](images/image.png)
+    
+    - We would minimize this **cost function** as a function of $w(j)$ and $b(j)$ to learn the parameters $w(j)$, $b(j)$ for user $j$.
+    - Instead of focusing on a single user, To learn the parameters for all of the users, we would take this **cost function** on top and sum it over all the $n_{u}$  .
+- Where do these features come from? And what if you don't have access to such features that give you enough detail about the movies with which to make these predictions?
