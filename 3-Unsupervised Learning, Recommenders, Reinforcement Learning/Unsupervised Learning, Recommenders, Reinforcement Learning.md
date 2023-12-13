@@ -226,4 +226,36 @@
     
     - We would minimize this **cost function** as a function of $w(j)$ and $b(j)$ to learn the parameters $w(j)$, $b(j)$ for user $j$.
     - Instead of focusing on a single user, To learn the parameters for all of the users, we would take this **cost function** on top and sum it over all the $n_{u}$  .
-- Where do these features come from? And what if you don't have access to such features that give you enough detail about the movies with which to make these predictions?
+
+- How to come with these features if they don’t exist?
+    
+    ![Alt text](images/img6.png)
+    
+    - What we have is that if you have the **parameters** for all **four** users here, and if you have **four ratings** in this example that you want to try to match, you can take a reasonable guess at what is a feature vector $x_1$ for movie one that would make good predictions for these four ratings up on top.
+    - Similarly, if you have these **parameter** vectors, you can also try to come up with a feature vector $x_2$ for the second movie, feature vector $x_3$ for the third movie, and so on to try to make the algorithm's predictions on these additional movies close to what was actually the ratings given by the users.
+    - Notice that this works only because we have **parameters** for four users. That's what allows us to try to guess appropriate features, $x_1$.
+    - This is why in a typical **linear regression** application if you had just a single user, you don't actually have enough information to figure out what would be the features, $x_1$ and $x_2$,
+    - But in **collaborative filtering** because you have ratings from multiple users of the same item with the same movie. That's what makes it possible to try to guess what are possible values for these **features**.
+    
+    ![Alt text](images/img5.png)
+    
+    - For most machine learning applications the **features** had to be externally given but in this algorithm, we can actually learn the **features** for a given movie. But we’ve assumed we had those parameters $w$  and $b$  for the different users. Where do we get these parameters from?
+    - If we put together the algorithm for learning $w$ and $b$ and the one for learning features $x$, This gives use our **collaborative filtering algorithm**.
+    
+    ![Alt text](images/img4.png)
+    
+    - How do we **minimize** this **cost function** as a function of $w, b, x$ ?
+    
+    ![Alt text](images/img3.png)
+    
+- The algorithm we derived is called **collaborative filtering**, It refers to the sense that because multiple users have rated the same movie collaboratively, given you a sense of what this movie maybe like, that allows you to guess what are appropriate **features** for that movie, and this in turn allows you to predict how other users that haven't yet rated that same movie may decide to rate it in the future.
+- **Collaborative filtering** is a technique that can filter out items that a user might like on the basis of reactions by similar users.
+- It works by searching a large group of people and finding a smaller set of users with tastes similar to a particular user. It looks at the items they like and combines them to create a ranked list of suggestions.
+- How does **collaborative filtering** deal with binary labels?
+    - There are many ways of defining what is the **label one** and what is the **label zero**, and what is the **label question mark** in **collaborative filtering** with **binary labels**.
+
+        ![Alt text](images/img2.png)
+
+    - The process we'll use to generalize the algorithm will be very much reminiscent to how we have gone from **linear regression** to logistic regression, from predicting numbers to predicting a **binary label.**
+    ![Alt text](images/img1.png)
+    ![Alt text](images/img0.png)
