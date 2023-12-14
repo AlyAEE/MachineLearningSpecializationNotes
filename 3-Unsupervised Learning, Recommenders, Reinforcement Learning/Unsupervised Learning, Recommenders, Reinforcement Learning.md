@@ -259,3 +259,117 @@
     - The process we'll use to generalize the algorithm will be very much reminiscent to how we have gone from **linear regression** to logistic regression, from predicting numbers to predicting a **binary label.**
     ![Alt text](images/img1.png)
     ![Alt text](images/img0.png)
+
+- What is **Mean Normalization** and how to apply it in **recommendation systems**?
+    - When building a **recommended system** with numbers wide such as movie ratings from zero to five stars, it turns out your algorithm will run more efficiently and perform a bit better when you carry out **mean normalization**. That is if you **normalize** the movie ratings to have a consistent average value.
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/acb1aef4-e9ac-42c7-a5db-56bc37522ced/Untitled.png)
+    
+    - **Mean normalization** will help this algorithm come up with better predictions of the movie ratings for a new user that has not yet rated any movies.
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/b0148061-406a-4035-a4cc-4835b9b9574e/Untitled.png)
+    
+    - To carry out **mean normalization**, what we're going to do is take all of these ratings and for each movie, compute the **average** rating, Then subtract from every rating the **average** rating that it was given.
+    - For a new user that has no ratings, it seems more reasonable to take the **average** rating of the movies rather than to guess that all the ratings for this new user will be **zero**.
+    - There's one other alternative that you could use which is to instead **normalize** the **columns** of this matrix to have **zero** mean. **Normalizing** the columns would help if there is a new movie that no one has rated yet.
+- How to implement **Collaborative Filtering** with **TensorFlow**?
+    - **TensorFlow** is a great tool for building neural networks, Also it turns out that it can also be very helpful for building other types of learning algorithms as well Like the **collaborative filtering algorithm**.
+    - For many applications in order to implement **gradient descent**, you need to find the **derivatives** of the **cost function**, but **TensorFlow** can automatically figure out for you what are the **derivatives** of the **cost function**.
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/3f8b3f54-5bb3-443d-badf-e4dac7c39cf5/Untitled.png)
+    
+    - Notice that with the **gradient tape feature** of TensorFlow, the main work you need to do is to tell it how to **compute** the **cost function** $J$. And the rest of the syntax causes TensorFlow to automatically figure out for you what is that **derivative**? And with this **TensorFlow** will start with finding the slope of this function.
+    - This is a very powerful feature of **TensorFlow** called **Auto Diff**. And some other machine learning packages like **pytorch** also support **Auto Diff**.
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/1547e175-8864-4666-b57a-d6ff11174c1f/Untitled.png)
+    
+    - With **TensorFlow** and **Auto Diff,** you're not limited to just **gradient descent**. You can also use a more powerful **optimization** algorithm like the **Adam optimizer**.
+    - Why couldn't we use a **dense layer** and then **model.compiler** and **model.fit**?
+        - The reason is **collateral filtering algorithm** and **cost function** doesn't neatly fit into the **dense layer** or the other standard **neural network** layer types of **TensorFlow**.
+        - That's why we had to implement it this other way where we would implement the **cost function** ourselves.
+- On some websites when you're looking at one item, it gives you other similar or related items, How do websites do that?
+    - It turns out **collaborative filtering** algorithm gives us a nice way to find related items.
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/01e5526b-96fd-4f97-b732-187bad7c3f58/Untitled.png)
+    
+    - As part of  **collaborative filtering** we have learned **features** $x^{(i)}$ for every item $i$ they're recommending to users.
+    - It turns out that given features $x^{(i)}$ of item $i$, if you want to find other items, say other movies related to movie i, then what you can do is try to find the item $k$ with features $x^{(k)}$ that is similar to  $x^{(i)}$.
+- What are the limitations of **collaborative filtering**?
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/3c478310-2786-4847-b553-04898b87574e/Untitled.png)
+    
+    - **Collaborative filtering** has two limitations:
+        - **Cold start** problem when you have a new item, there are few users have rated, or we have a new user that's rated very few items, the results of collaborative filtering for that item or for that user may not be very accurate.
+        - **Collaborative filtering**  doesn't give you a natural way to use **side information** or additional information about items or users.
+- What is the difference between **collaborative filtering** and **content-based filtering**?
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/ca0d8ae9-77a2-416b-82ac-cd935ec6396c/Untitled.png)
+    
+    - **Content-based filtering** algorithm, you still have data where users have rated some items.
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/9a602277-9ece-441b-b596-a19d953a7f2f/Untitled.png)
+    
+- How **Content-based Filtering** work?
+    - In **content-based filtering**, we're going to develop an algorithm that learns to match users and movies.
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/bf7d8ee4-ed94-444f-90be-bce7a9fb4ad7/Untitled.png)
+    
+    - Previously, we were predicting the **rating** of user $j$  on movie $i$ as $w^{(j)} * x^{(i)} + b^{(j)}$
+    - In order to develop **content-based filtering**, we are going to get rid of  $b^{(j)}$. It turns out this won't hurt the performance of the **content-based filtering** at all.
+    - Instead of writing $w^{(j)}$ for a user $j$  , we are going to just replace this notation with $v^{(j)}_u$.
+    - Instead of writing $x^{(i)}$ for a movie $i$, we are going to just replace this notation with $v^{(i)}_m$.
+    - This **v** here stands for a **vector**. $v^{(j)}_u$ as a vector as a list of numbers computed from the **features** of user $j$ and $v^{(i)}_m$ is a list of numbers computed from the **features** movie $i$ .
+    - If we're able to come up with an appropriate choice of these vectors, $v^{(j)}_u$and $v^{(i)}_m$, then the **dot product** between these two **vectors** will be a good prediction of the rating that user  $j$ gives movie  $i$.
+    - Notice that $x_u$ and $x_m$  could be different in size, , $V$ have to be the same size to perform the **dot product**.
+- How to develop **Content-based filtering** using **Deep Learning**?
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/b64d3fba-da6d-4497-9353-4efcaa41015f/Untitled.png)
+    
+    - In order to compute $V_u$ and $V_m$, We’re going to use ****************************neural network.****************************
+    - Notice that the output layer in both $V_u$ and $V_m$ has the same number of units.
+    - If we have **binary labels**, we can apply the **sigmoid function.**
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/39793836-ead4-4305-be36-ce71536a50a1/Untitled.png)
+    
+    - To train all the **parameters** of both the user network and the movie network, we're going to construct a **cost function** $J$, which is going to be very similar to the **cost function** that you saw in **collaborative filtering.**
+    - If you want to **regularize** this model, we can also add the usual **neural network regularization term** to encourage the **neural networks** to keep the values of their parameters small.
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/6907f2ed-9a25-401a-a88c-608429e06141/Untitled.png)
+    
+    - In content-based filtering, After you've trained the model, you can also use it to find similar items.
+    - This also can be **pre-computed** ahead of time. By that I mean, you can run a compute server overnight to go through the list of all your movies and for every movie, find similar movies to it.
+- How to efficiently and computationally find **recommendations** from a large set of items?
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/1e375c38-ea7b-4253-8cb8-9166de8a064a/Untitled.png)
+    
+    - From a catalog of thousands or millions or 10s of millions or even more items, To figure out which products you should **recommend**, then having to run **neural network inference** Thousands of millions of times every time a **user** shows up on your website becomes **computationally infeasible.**
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/74c8f00a-edf4-4bd9-84e1-2925ed4d02ea/Untitled.png)
+    
+    - Many large scale **recommender** systems are implemented as two steps which are called the **retrieval** and **ranking** steps.
+    - The idea is during the **retrieval** step you will generate a large list of plausible item candidates. That tries to cover a lot of possible things you might **recommend** to the user.
+    - Then during the **ranking** step will fine tune and pick the best items to **recommend** to the user.
+    - The goal of the **retrieval** step is to ensure broad coverage to have enough movies and at least have many good ones in there.
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/591d528f-6349-42ab-b3b2-5a86f536d8b9/Untitled.png)
+    
+    - The second step of this is the **ranking** step. During the **ranking** step you will take the list **retrieved** during the **retrieval** step and **rank** them using the **learned** model.
+    - That means you will feed the user **feature vector** and the movie **feature vector** into this **neural network** and for each of the user movie pairs compute the **predicted** rating.
+    - one additional optimization is that if you have computed $V_m$ for all the movies in advance, then all you need to do is to do inference on the $V_u$ part of the neural network, and take the **dot product** between $V_u$  and $V_m$  for the movies that you have retrieved during the retrieval step. So this computation can be done relatively quickly.
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/c2d71118-ce7b-4225-b7ea-95b3db34a6c2/Untitled.png)
+    
+    - one of the decisions you need to make for this algorithm is how many items do you want to retrieve during the **retrieval step** To feed into the more accurate **ranking step**.
+- What are the goals of **recommender systems**?
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/2bb935c8-4114-4759-b86d-a1414830cd2a/Untitled.png)
+    
+- What are the **ethical** use of **recommender systems**?/
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/a54d9cdc-15e9-4212-859d-2ee9d9af80a8/Untitled.png)
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/3dcffcd3-0599-406f-b302-03e50374c3d4/Untitled.png)
+    
+- How to implement **Content-based filtering** using **TensorFlow**?
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/71928922-89f7-4f87-97d2-4fabd57991de/Untitled.png)
