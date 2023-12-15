@@ -173,7 +173,7 @@
     - Based on the formula above, you can now look at how accurately this algorithm's predictions on the **cross-validation** or **test set** matches the **labels** **y** you have in the **cross-validation** or the **test sets**.
     - Since most of **anomaly** detection application datasets are **skewed** datasets, there are different metrics to evaluate the **cross-validation** and **test sets**
     - In conclusion, the practical process of building an **anomaly detection** system is much easier if you actually have just a small number of **labeled examples** of known **anomalies**.
-- Now, this does raise the question, if you have a few labeled examples, since you'll still be using an unsupervised learning algorithm, why not take those labeled examples and use a supervised learning algorithm instead?
+- Now, this does raise the question, if you have a few **labeled** examples, since you'll still be using an **unsupervised learning algorithm**, why not take those **labeled** examples and use a **supervised learning** algorithm instead?
     
     ![Untitled](images/Untitled%2024.png)
     
@@ -181,40 +181,86 @@
     
 - How to effectively choose a good set of features when building an **anomaly detection algorithm**?
     - When building an **anomaly detection algorithm**, Choosing a good choice of **features** turns out to be really important.
-
     - In **supervised** learning, if you have a few extra **features** that are not relevant to the problem, that often turns out to be okay. Because the algorithm has enough labels to figure out what features ignore, or how to rescale feature to take the best advantage of the features you do give it.
-
     - For **anomaly detection** which runs, or learns just from **unlabeled** data, is harder for the algorithm to figure out what **features** to ignore.
     
     ![Untitled](images/Untitled%2026.png)
+    
     - One step that can help your **anomaly detection** algorithm, is to try to make sure the features you give it are approximately **Gaussian**.
-
     - Whatever transformation you apply to the **training set**, Remember to apply the same transformation to your **cross-validation** and **test set** data as well.
     
     ![Untitled](images/Untitled%2027.png)
-    - After training your **anomaly detection algorithm**, if it doesn't work well on your **cross-validation set**, you can carry out an **error analysis** process for **anomaly detection**.
-
-    - You can try to look at where the algorithm is not yet doing well whereas making errors, and then use that to try to come up with improvements.
     
+    - After training your **anomaly detection algorithm**, if it doesn't work well on your **cross-validation set**, you can carry out an **error analysis** process for **anomaly detection**.
+    - You can try to look at where the algorithm is not yet doing well whereas making errors, and then use that to try to come up with improvements.
     - See what anomalies in the **cross-validation set** the algorithm is failing to detect. And then to look at those examples to see if that can inspire the creation of new **features** that would allow the algorithm to spot. That example takes on unusually large or unusually small values on the new **features**, so that you can now successfully flag those examples as **anomalies**.
     
     ![Untitled](images/Untitled%2028.png)
-
-### Recommendation Systems
-
--   How to make recommendations in a **recommender system**?
     
-    ![Untitled](images/image-3.png)
+
+### Dimensionality Reduction
+
+- **Dimensionality reduction** is the transformation of data from a high-dimensional space into a low-dimensional space so that the low-dimensional representation retains some meaningful properties of the original data, ideally close to its intrinsic dimension.
+- **Principal component analysis (PCA)** is by far the most popular **dimensionality reduction algorithm.**
+- **PCA** is an **unsupervised learning** algorithm, It is commonly used for **Dimensionality Reduction** and **Visualization**
+- **PCA** lets you take data with a lot of features, 50, 1,000, even more, and reduce the number of features to **two** features, maybe **three** features, so that you can plot it and visualize it.
+- How Does **PCA** work?
+    
+    ![Untitled](images/Untitled%2029.png)
+    
+    - Before applying **PCA** to the dataset, we need to first **Normalize** the dataset to Have **zero mean** and Then perform **Feature scaling** so the ranges aren’t too far apart.
+    - Let’s say we have a Dataset with **two** f**eatures** and we want to reduce it to **one feature**
+    
+    ![Untitled](images/Untitled%2030.png)
+    
+    ![Untitled](images/Untitled%2031.png)
+    
+    - What we need to do is pick one **axis** instead of two **axis** of what’s important about the dataset examples.
+    - We will call the new axis **z-axis** and we will **project** the examples to a point on **z-axis**.
+    
+    ![Untitled](images/Untitled%2032.png)
+    
+    - Then we need to pick the **z-axis** with the **highest variance**, meaning the axis that captures the most information about original data.
+    - In **PCA** algorithm, This axis is called the **principal component**, It is the axis when you project the data onto it, you end up with the largest possible amount of **variance**.
+    
+    ![Untitled](images/Untitled%2033.png)
+    
+    - To **project** The original examples to the **z-axis**, The formula to do so is to take the **dot product** between the **length 1 vector** and each example in the dataset.
+    - The **length 1 vector** is a **vector** of length **1** pointing in the direction of **z-axis.**
+    
+    ![Untitled](images/Untitled%2034.png)
+    
+    - If we want to find another **principal component**, it has to be at **90 degrees** of the first **principal component** and if we have to pick a third **principal component**, it has to be at **90 degrees** of the first and the second **principal component**.
+- Can we use PCA to figure out the what was the original data?
+    
+    ![Untitled](images/Untitled%2035.png)
+    
+    - It turns out, There is a step in **PCA** called **Reconstruction** which tries to go from the reduced dataset into the original one.
+    - Although, you don’t have enough information to get back the original dataset exactly, but you can try to **approximate** it.
+- How to implement **PCA** in **Scikit-Learn**?
+    
+    ![Untitled](images/Untitled%2036.png)
+    
+
+---
+
+![Untitled](images/Untitled%2037.png)
+
+## Recommendation Systems
+
+- How to make recommendations in a **recommender system**?
+    
+    ![Untitled](images/Untitled%2038.png)
     
     - It is important for the system to know which users have rated which movies and which has not.
     - one simple way to approach the problem is to look at the movies that users have not rated and try to predict how users would rate those movies by recommending to users things that they are more likely to rate as 5 stars.
 - how we can develop a recommender system if we had features of each item?
     
-    ![Untitled](images/image-2.png)
+    ![Untitled](images/Untitled%2039.png)
     
     - This is a lot like **linear regression**, except that we're fitting a different **linear regression** model for each of the **4** users in the dataset.
     
-    ![Untitled](images/image-1.png)
+    ![Untitled](images/Untitled%2040.png)
     
     - This is how we can formulate the cost function for this algorithm.
     - We're trying to choose parameters $w$ and $b$  to **minimize** the **squared error** between the predicted rating and the actual rating that was observed.
@@ -222,14 +268,13 @@
     - This is very much like the **cost function** we have for **linear regression**
     - It turns out that for **recommender systems** it would be convenient to actually eliminate this division by $m(j)$ term, $m(j)$ is just a constant in this expression, Even if you take it out, you should end up with the same value of $w$  and $b$ .
     
-    ![Untitled](images/image.png)
+    ![Untitled](images/Untitled%2041.png)
     
     - We would minimize this **cost function** as a function of $w(j)$ and $b(j)$ to learn the parameters $w(j)$, $b(j)$ for user $j$.
     - Instead of focusing on a single user, To learn the parameters for all of the users, we would take this **cost function** on top and sum it over all the $n_{u}$  .
-
 - How to come with these features if they don’t exist?
     
-    ![Alt text](images/img6.png)
+    ![Untitled](images/Untitled%2042.png)
     
     - What we have is that if you have the **parameters** for all **four** users here, and if you have **four ratings** in this example that you want to try to match, you can take a reasonable guess at what is a feature vector $x_1$ for movie one that would make good predictions for these four ratings up on top.
     - Similarly, if you have these **parameter** vectors, you can also try to come up with a feature vector $x_2$ for the second movie, feature vector $x_3$ for the third movie, and so on to try to make the algorithm's predictions on these additional movies close to what was actually the ratings given by the users.
@@ -237,37 +282,39 @@
     - This is why in a typical **linear regression** application if you had just a single user, you don't actually have enough information to figure out what would be the features, $x_1$ and $x_2$,
     - But in **collaborative filtering** because you have ratings from multiple users of the same item with the same movie. That's what makes it possible to try to guess what are possible values for these **features**.
     
-    ![Alt text](images/img5.png)
+    ![Untitled](images/Untitled%2043.png)
     
     - For most machine learning applications the **features** had to be externally given but in this algorithm, we can actually learn the **features** for a given movie. But we’ve assumed we had those parameters $w$  and $b$  for the different users. Where do we get these parameters from?
     - If we put together the algorithm for learning $w$ and $b$ and the one for learning features $x$, This gives use our **collaborative filtering algorithm**.
     
-    ![Alt text](images/img4.png)
+    ![Untitled](images/Untitled%2044.png)
     
     - How do we **minimize** this **cost function** as a function of $w, b, x$ ?
     
-    ![Alt text](images/img3.png)
+    ![Untitled](images/Untitled%2045.png)
     
 - The algorithm we derived is called **collaborative filtering**, It refers to the sense that because multiple users have rated the same movie collaboratively, given you a sense of what this movie maybe like, that allows you to guess what are appropriate **features** for that movie, and this in turn allows you to predict how other users that haven't yet rated that same movie may decide to rate it in the future.
 - **Collaborative filtering** is a technique that can filter out items that a user might like on the basis of reactions by similar users.
 - It works by searching a large group of people and finding a smaller set of users with tastes similar to a particular user. It looks at the items they like and combines them to create a ranked list of suggestions.
 - How does **collaborative filtering** deal with binary labels?
     - There are many ways of defining what is the **label one** and what is the **label zero**, and what is the **label question mark** in **collaborative filtering** with **binary labels**.
-
-        ![Alt text](images/img2.png)
-
+    
+    ![Untitled](images/Untitled%2046.png)
+    
     - The process we'll use to generalize the algorithm will be very much reminiscent to how we have gone from **linear regression** to logistic regression, from predicting numbers to predicting a **binary label.**
-    ![Alt text](images/img1.png)
-    ![Alt text](images/img0.png)
-
+    
+    ![Untitled](images/Untitled%2047.png)
+    
+    ![Untitled](images/Untitled%2048.png)
+    
 - What is **Mean Normalization** and how to apply it in **recommendation systems**?
     - When building a **recommended system** with numbers wide such as movie ratings from zero to five stars, it turns out your algorithm will run more efficiently and perform a bit better when you carry out **mean normalization**. That is if you **normalize** the movie ratings to have a consistent average value.
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/acb1aef4-e9ac-42c7-a5db-56bc37522ced/Untitled.png)
+    ![Untitled](images/Untitled%2049.png)
     
     - **Mean normalization** will help this algorithm come up with better predictions of the movie ratings for a new user that has not yet rated any movies.
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/b0148061-406a-4035-a4cc-4835b9b9574e/Untitled.png)
+    ![Untitled](images/Untitled%2050.png)
     
     - To carry out **mean normalization**, what we're going to do is take all of these ratings and for each movie, compute the **average** rating, Then subtract from every rating the **average** rating that it was given.
     - For a new user that has no ratings, it seems more reasonable to take the **average** rating of the movies rather than to guess that all the ratings for this new user will be **zero**.
@@ -276,12 +323,12 @@
     - **TensorFlow** is a great tool for building neural networks, Also it turns out that it can also be very helpful for building other types of learning algorithms as well Like the **collaborative filtering algorithm**.
     - For many applications in order to implement **gradient descent**, you need to find the **derivatives** of the **cost function**, but **TensorFlow** can automatically figure out for you what are the **derivatives** of the **cost function**.
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/3f8b3f54-5bb3-443d-badf-e4dac7c39cf5/Untitled.png)
+    ![Untitled](images/Untitled%2051.png)
     
     - Notice that with the **gradient tape feature** of TensorFlow, the main work you need to do is to tell it how to **compute** the **cost function** $J$. And the rest of the syntax causes TensorFlow to automatically figure out for you what is that **derivative**? And with this **TensorFlow** will start with finding the slope of this function.
     - This is a very powerful feature of **TensorFlow** called **Auto Diff**. And some other machine learning packages like **pytorch** also support **Auto Diff**.
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/1547e175-8864-4666-b57a-d6ff11174c1f/Untitled.png)
+    ![Untitled](images/Untitled%2052.png)
     
     - With **TensorFlow** and **Auto Diff,** you're not limited to just **gradient descent**. You can also use a more powerful **optimization** algorithm like the **Adam optimizer**.
     - Why couldn't we use a **dense layer** and then **model.compiler** and **model.fit**?
@@ -290,29 +337,29 @@
 - On some websites when you're looking at one item, it gives you other similar or related items, How do websites do that?
     - It turns out **collaborative filtering** algorithm gives us a nice way to find related items.
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/01e5526b-96fd-4f97-b732-187bad7c3f58/Untitled.png)
+    ![Untitled](images/Untitled%2053.png)
     
     - As part of  **collaborative filtering** we have learned **features** $x^{(i)}$ for every item $i$ they're recommending to users.
     - It turns out that given features $x^{(i)}$ of item $i$, if you want to find other items, say other movies related to movie i, then what you can do is try to find the item $k$ with features $x^{(k)}$ that is similar to  $x^{(i)}$.
 - What are the limitations of **collaborative filtering**?
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/3c478310-2786-4847-b553-04898b87574e/Untitled.png)
+    ![Untitled](images/Untitled%2054.png)
     
     - **Collaborative filtering** has two limitations:
         - **Cold start** problem when you have a new item, there are few users have rated, or we have a new user that's rated very few items, the results of collaborative filtering for that item or for that user may not be very accurate.
         - **Collaborative filtering**  doesn't give you a natural way to use **side information** or additional information about items or users.
 - What is the difference between **collaborative filtering** and **content-based filtering**?
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/ca0d8ae9-77a2-416b-82ac-cd935ec6396c/Untitled.png)
+    ![Untitled](images/Untitled%2055.png)
     
     - **Content-based filtering** algorithm, you still have data where users have rated some items.
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/9a602277-9ece-441b-b596-a19d953a7f2f/Untitled.png)
+    ![Untitled](images/Untitled%2056.png)
     
 - How **Content-based Filtering** work?
     - In **content-based filtering**, we're going to develop an algorithm that learns to match users and movies.
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/bf7d8ee4-ed94-444f-90be-bce7a9fb4ad7/Untitled.png)
+    ![Untitled](images/Untitled%2057.png)
     
     - Previously, we were predicting the **rating** of user $j$  on movie $i$ as $w^{(j)} * x^{(i)} + b^{(j)}$
     - In order to develop **content-based filtering**, we are going to get rid of  $b^{(j)}$. It turns out this won't hurt the performance of the **content-based filtering** at all.
@@ -323,53 +370,53 @@
     - Notice that $x_u$ and $x_m$  could be different in size, , $V$ have to be the same size to perform the **dot product**.
 - How to develop **Content-based filtering** using **Deep Learning**?
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/b64d3fba-da6d-4497-9353-4efcaa41015f/Untitled.png)
+    ![Untitled](images/Untitled%2058.png)
     
     - In order to compute $V_u$ and $V_m$, We’re going to use ****************************neural network.****************************
     - Notice that the output layer in both $V_u$ and $V_m$ has the same number of units.
     - If we have **binary labels**, we can apply the **sigmoid function.**
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/39793836-ead4-4305-be36-ce71536a50a1/Untitled.png)
+    ![Untitled](images/Untitled%2059.png)
     
     - To train all the **parameters** of both the user network and the movie network, we're going to construct a **cost function** $J$, which is going to be very similar to the **cost function** that you saw in **collaborative filtering.**
     - If you want to **regularize** this model, we can also add the usual **neural network regularization term** to encourage the **neural networks** to keep the values of their parameters small.
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/6907f2ed-9a25-401a-a88c-608429e06141/Untitled.png)
+    ![Untitled](images/Untitled%2060.png)
     
     - In content-based filtering, After you've trained the model, you can also use it to find similar items.
     - This also can be **pre-computed** ahead of time. By that I mean, you can run a compute server overnight to go through the list of all your movies and for every movie, find similar movies to it.
 - How to efficiently and computationally find **recommendations** from a large set of items?
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/1e375c38-ea7b-4253-8cb8-9166de8a064a/Untitled.png)
+    ![Untitled](images/Untitled%2061.png)
     
     - From a catalog of thousands or millions or 10s of millions or even more items, To figure out which products you should **recommend**, then having to run **neural network inference** Thousands of millions of times every time a **user** shows up on your website becomes **computationally infeasible.**
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/74c8f00a-edf4-4bd9-84e1-2925ed4d02ea/Untitled.png)
+    ![Untitled](images/Untitled%2062.png)
     
     - Many large scale **recommender** systems are implemented as two steps which are called the **retrieval** and **ranking** steps.
     - The idea is during the **retrieval** step you will generate a large list of plausible item candidates. That tries to cover a lot of possible things you might **recommend** to the user.
     - Then during the **ranking** step will fine tune and pick the best items to **recommend** to the user.
     - The goal of the **retrieval** step is to ensure broad coverage to have enough movies and at least have many good ones in there.
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/591d528f-6349-42ab-b3b2-5a86f536d8b9/Untitled.png)
+    ![Untitled](images/Untitled%2063.png)
     
     - The second step of this is the **ranking** step. During the **ranking** step you will take the list **retrieved** during the **retrieval** step and **rank** them using the **learned** model.
     - That means you will feed the user **feature vector** and the movie **feature vector** into this **neural network** and for each of the user movie pairs compute the **predicted** rating.
     - one additional optimization is that if you have computed $V_m$ for all the movies in advance, then all you need to do is to do inference on the $V_u$ part of the neural network, and take the **dot product** between $V_u$  and $V_m$  for the movies that you have retrieved during the retrieval step. So this computation can be done relatively quickly.
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/c2d71118-ce7b-4225-b7ea-95b3db34a6c2/Untitled.png)
+    ![Untitled](images/Untitled%2064.png)
     
     - one of the decisions you need to make for this algorithm is how many items do you want to retrieve during the **retrieval step** To feed into the more accurate **ranking step**.
 - What are the goals of **recommender systems**?
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/2bb935c8-4114-4759-b86d-a1414830cd2a/Untitled.png)
+    ![Untitled](images/Untitled%2065.png)
     
 - What are the **ethical** use of **recommender systems**?/
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/a54d9cdc-15e9-4212-859d-2ee9d9af80a8/Untitled.png)
+    ![Untitled](images/Untitled%2066.png)
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/3dcffcd3-0599-406f-b302-03e50374c3d4/Untitled.png)
+    ![Untitled](images/Untitled%2067.png)
     
 - How to implement **Content-based filtering** using **TensorFlow**?
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/71928922-89f7-4f87-97d2-4fabd57991de/Untitled.png)
+    ![Untitled](images/Untitled%2068.png)
