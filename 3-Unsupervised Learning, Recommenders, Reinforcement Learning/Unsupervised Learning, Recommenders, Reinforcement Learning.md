@@ -420,3 +420,28 @@
 - How to implement **Content-based filtering** using **TensorFlow**?
     
     ![Untitled](images/Untitled%2068.png)
+## Reinforcement Learning
+
+- What is Reinforcement Learning?
+- How to get a helicopter to fly itself using reinforcement learning?
+    
+    ![Untitled](images/Untitled%2069.png)
+    
+    - The **task** is given the position of the helicopter to **decide how** to move the control sticks. In reinforcement learning, we call the position, orientation, speed etc.., of the helicopter the **state s**. A
+    - So the **task** is to find a **function** that **maps** from the **state** of the helicopter to an **action a**, meaning how far to push the two control sticks in order to keep the helicopter balanced in the air and flying and without crashing.
+    - **Supervised** **learning** turns out not a great approach for autonomous helicopter flying Because when the helicopter is moving through the air is actually very ambiguous, what is the exact one right action to take. It's actually very difficult to get a dataset of **x** and the ideal action **y**. So instead we use **reinforcement learning**.
+    - A key input to **reinforcement learning** is something called the **reward** function which tells the helicopter when it's doing well and when it's doing poorly.
+    - When the helicopter's flying well you may give it a **reward** of plus one every second it is flying well and whenever it's flying poorly you may give it a **negative reward** or if it ever crashes, you may give it a very large **negative reward** like negative 1,000.
+    - Then it's the **reinforcement learning** algorithm's job to figure out how to get more of the good helicopter and fewer of the bad helicopter outcomes.
+    - This would incentivize the helicopter to spend a lot more time flying well and hopefully to never crash.
+    - One way to think of why **reinforcement learning** is so powerful is you have to tell it **what** to do rather than **how** to do it. And specifying the **reward** function rather than the **optimal action** gives you a lot more flexibility in how you design the system.
+- **Reinforcement learning** has been successfully applied to a variety of applications:
+    
+    ![Untitled](images/Untitled%2070.png)
+    
+- What is the formalism of **reinforcement learning**
+    - At every time step, the robot is in some **state** $s$, and it gets to choose an **action $a$**, and it also enjoys some **rewards $R(s)$** that it gets from that **state**. As a result of this **action**, it gets to some new **state $S'$**. $(S,A,R(s),S')$
+    - Just for clarity, the reward here, $R(s)$, this is the **reward** associated with the first **state**.
+- How do you know if a particular set of **rewards** is better or worse than a different set of **rewards**?
+    - The **return** in **reinforcement learning** allows us to capture which set of **rewards** is better or worse than a different set of **rewards.**
+    - The concept of a **return** captures that **rewards** you can get quicker are maybe more attractive than **rewards** that take you a long time to get to.
