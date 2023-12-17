@@ -443,5 +443,25 @@
     - At every time step, the robot is in some **state** $s$, and it gets to choose an **action $a$**, and it also enjoys some **rewards $R(s)$** that it gets from that **state**. As a result of this **action**, it gets to some new **state $S'$**. $(S,A,R(s),S')$
     - Just for clarity, the reward here, $R(s)$, this is the **reward** associated with the first **state**.
 - How do you know if a particular set of **rewards** is better or worse than a different set of **rewards**?
-    - The **return** in **reinforcement learning** allows us to capture which set of **rewards** is better or worse than a different set of **rewards.**
-    - The concept of a **return** captures that **rewards** you can get quicker are maybe more attractive than **rewards** that take you a long time to get to.
+- The **return** in **reinforcement learning** allows us to capture which set of **rewards** is better or worse than a different set of **rewards.**
+- The concept of a **return** captures that **rewards** you can get quicker are maybe more attractive than **rewards** that take you a long time to get to.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/0216bdd1-9f89-4fcb-9c4f-cd881b516494/Untitled.png)
+
+- The return is defined as the sum of each **state’s reward** we go through but **weighted** by one additional factor, which is called the **discount factor**.
+- The **discount factor** is always less than **one** and called **gamma** $r$.
+- The **discount factor** makes the **reinforcement learning** algorithm a little **impatient**, because it gives full credit for the $1^{st}$ reward, then it gives a little less credit to the $2^{nd}$ reward and so on. So getting **rewards** sooner results in a **higher** value for the total **return**.
+- In many **reinforcement learning** algorithms a common choice for the **discount factor** will be a number pretty close to **1**.
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/52f1d0cf-8185-474f-ae50-d9afa7ab5f00/Untitled.png)
+
+- The **state 1** and **state 6** are called **Terminal state**.
+- The **return** has an interesting effect when you have systems with **negative rewards**. For systems with **negative rewards**, it causes the algorithm to try to push out the make the **rewards** as far into the future as possible.
+- How does a **reinforcement learning** algorithm makes **decisions** or picks **actions**?
+    
+    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/016b80f3-9acf-4514-9b66-e562881e19d2/Untitled.png)
+    
+    - There are many different ways that you can take **actions** in the **reinforcement learning** problem.
+    - In **reinforcement learning**, our goal is to come up with a **function** which is called a **policy** $\pi$, whose job it is to take as input any **state** $s$ ****and map it to some **action** $a$ that it wants us to take.
+    - The goal of **reinforcement learning** is to find a **policy**  
+    $\pi(s)$ that tells you what **action** to take in every **state** so as to maximize the **return**.
