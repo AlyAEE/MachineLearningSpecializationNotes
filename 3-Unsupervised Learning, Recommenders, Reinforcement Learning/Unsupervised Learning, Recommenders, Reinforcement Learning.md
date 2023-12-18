@@ -465,3 +465,11 @@
     - In **reinforcement learning**, our goal is to come up with a **function** which is called a **policy** $\pi$, whose job it is to take as input any **state** $s$ ****and map it to some **action** $a$ that it wants us to take.
     - The goal of **reinforcement learning** is to find a **policy**  
     $\pi(s)$ that tells you what **action** to take in every **state** so as to maximize the **return**.
+- 
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/2c696dca-2450-4612-902f-d57062de399a/Untitled.png)
+
+- What is **Markov Decision Process(MDP)**?
+    - It is **a** mathematical framework used for modeling **decision-making** problems where the outcomes are partly random and partly controllable.
+    - It's a framework that can address most **reinforcement learning** problems.
+    - The term **Markov** in **MDP** refers to that the future only depends on the current **state** and not on anything that might have occurred prior getting to the current **state**.
