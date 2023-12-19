@@ -420,10 +420,13 @@
 - How to implement **Content-based filtering** using **TensorFlow**?
     
     ![Untitled](images/Untitled%2068.png)
+    
+
 ## Reinforcement Learning
 
-- What is Reinforcement Learning?
-- How to get a helicopter to fly itself using reinforcement learning?
+- What is **Reinforcement Learning**?
+    - **Reinforcement learning** is a machine learning training method based on rewarding desired behaviors and punishing undesired ones
+- How to get a helicopter to fly itself using **reinforcement learning**?
     
     ![Untitled](images/Untitled%2069.png)
     
@@ -439,37 +442,174 @@
     
     ![Untitled](images/Untitled%2070.png)
     
-- What is the formalism of **reinforcement learning**
+- What is the formalism of **reinforcement learning?**
     - At every time step, the robot is in some **state** $s$, and it gets to choose an **action $a$**, and it also enjoys some **rewards $R(s)$** that it gets from that **state**. As a result of this **action**, it gets to some new **state $S'$**. $(S,A,R(s),S')$
     - Just for clarity, the reward here, $R(s)$, this is the **reward** associated with the first **state**.
 - How do you know if a particular set of **rewards** is better or worse than a different set of **rewards**?
-- The **return** in **reinforcement learning** allows us to capture which set of **rewards** is better or worse than a different set of **rewards.**
-- The concept of a **return** captures that **rewards** you can get quicker are maybe more attractive than **rewards** that take you a long time to get to.
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/0216bdd1-9f89-4fcb-9c4f-cd881b516494/Untitled.png)
-
-- The return is defined as the sum of each **state’s reward** we go through but **weighted** by one additional factor, which is called the **discount factor**.
-- The **discount factor** is always less than **one** and called **gamma** $r$.
-- The **discount factor** makes the **reinforcement learning** algorithm a little **impatient**, because it gives full credit for the $1^{st}$ reward, then it gives a little less credit to the $2^{nd}$ reward and so on. So getting **rewards** sooner results in a **higher** value for the total **return**.
-- In many **reinforcement learning** algorithms a common choice for the **discount factor** will be a number pretty close to **1**.
-
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/52f1d0cf-8185-474f-ae50-d9afa7ab5f00/Untitled.png)
-
-- The **state 1** and **state 6** are called **Terminal state**.
-- The **return** has an interesting effect when you have systems with **negative rewards**. For systems with **negative rewards**, it causes the algorithm to try to push out the make the **rewards** as far into the future as possible.
+    - The **return** in **reinforcement learning** allows us to capture which set of **rewards** is better or worse than a different set of **rewards.**
+    - The concept of a **return** captures that **rewards** you can get quicker are maybe more attractive than **rewards** that take you a long time to get to.
+    
+    ![Untitled](images/Untitled%2071.png)
+    
+    - The return is defined as the sum of each **state’s reward** we go through but **weighted** by one additional factor, which is called the **discount factor**.
+    - The **discount factor** is always less than **one** and called **gamma** $\gamma$.
+    - The **discount factor** makes the **reinforcement learning** algorithm a little **impatient**, because it gives full credit for the $1^{st}$ reward, then it gives a little less credit to the $2^{nd}$ reward and so on. So getting **rewards** sooner results in a **higher** value for the total **return**.
+    - In many **reinforcement learning** algorithms a common choice for the **discount factor** will be a number pretty close to **1**.
+    
+    ![Untitled](images/Untitled%2072.png)
+    
+    - The **state 1** and **state 6** are called **Terminal state**.
+    - The **return** has an interesting effect when you have systems with **negative rewards**. For systems with **negative rewards**, it causes the algorithm to try to push out the make the **rewards** as far into the future as possible.
 - How does a **reinforcement learning** algorithm makes **decisions** or picks **actions**?
     
-    ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/016b80f3-9acf-4514-9b66-e562881e19d2/Untitled.png)
+    ![Untitled](images/Untitled%2073.png)
     
     - There are many different ways that you can take **actions** in the **reinforcement learning** problem.
     - In **reinforcement learning**, our goal is to come up with a **function** which is called a **policy** $\pi$, whose job it is to take as input any **state** $s$ ****and map it to some **action** $a$ that it wants us to take.
     - The goal of **reinforcement learning** is to find a **policy**  
     $\pi(s)$ that tells you what **action** to take in every **state** so as to maximize the **return**.
-- 
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/8922aaf7-be84-4ccc-8d4e-ef3a7243439a/2c696dca-2450-4612-902f-d57062de399a/Untitled.png)
+![Untitled](images/Untitled%2074.png)
 
 - What is **Markov Decision Process(MDP)**?
     - It is **a** mathematical framework used for modeling **decision-making** problems where the outcomes are partly random and partly controllable.
     - It's a framework that can address most **reinforcement learning** problems.
     - The term **Markov** in **MDP** refers to that the future only depends on the current **state** and not on anything that might have occurred prior getting to the current **state**.
+- What is State action value function?
+    
+    ![Untitled](images/Untitled%2075.png)
+    
+    - The **state action value** is a function typically denoted by the letter **Q** and it's a function of a **state** you might be in as well as the **action** you might choose to take in that **state $Q(s,a)$.**
+    
+    ![Untitled](images/Untitled%2076.png)
+    
+    - It turns out that once you can compute the **Q** function this will give you a way to pick **actions** as well.
+    - If you can compute $Q(s,a)$ For every **state** and every **action**, then that gives us a good way to compute the **optimal policy** $\pi(s)$.
+- What is the **Bellman equation**?
+    - The Bellman equation will help us compute the state action value function
+    
+    ![Untitled](images/Untitled%2077.png)
+    
+    ![Untitled](images/Untitled%2078.png)
+    
+    - $Q(s,a) = R(s)$ only in the **terminal** **state**, $R(s)$ is called the **immediate reward**.
+    
+    ![Untitled](images/Untitled%2079.png)
+    
+- How **Reinforcement learning** framework models **random**(**stochastic**) environments?
+    
+    ![Untitled](images/Untitled%2080.png)
+    
+    - When the **reinforcement learning** problem is **stochastic**, there isn't one sequence of rewards that you see for sure, instead you see this sequence of different rewards.
+    - In a **stochastic reinforcement learning** problem, what we're interested in is not **maximizing** the **return** because that's a **random** number. What we're interested in is **maximizing** the **average** value of the **sum** of discounted rewards.
+    - By **average** value, I mean if you were to take your **policy** and try it out a thousand times or  a million times, you get lots of different **reward** sequences, and if you were to take the average over all of these different sequences of the **sum** of **discounted rewards**, then that's what we call the **expected return**.
+    - The job of **reinforcement learning** algorithm is to choose a **policy** $\pi$ to **maximize** the **average** or the **expected** sum of **discounted rewards.**
+    
+    ![Untitled](images/Untitled%2081.png)
+    
+- What is the difference between **Discrete** and **Continuous State Space**?
+    
+    ![Untitled](images/Untitled%2082.png)
+    
+    - A **Discrete State Space** consists of a finite number of possible discrete values.
+    - A C**ontinuous State Space** consists of a vector of numbers, any of which could take any of a large number of values.
+- How to build a **lunar lander** with **reinforcement learning**?
+    - In this application you're in command of a **lunar lander** that is rapidly approaching the surface of the moon. And your job is the fire thrusters at the appropriate times to land it safely on the landing pad.
+    
+    ![Untitled](images/Untitled%2083.png)
+    
+    - In this application you have four possible actions on every time step and your job is to keep on picking actions over time:
+        - You could either do nothing, in which case the forces of inertia and gravity pull you towards the surface of the moon.
+        - you can fire a left thruster, This will tend to push the lunar lander to the right.
+        - you can fire the main engine to get down slowly.
+        - you can fire the right thruster, This will tend to push the lunar lander to the left.
+    - The **states space** are:
+        - It’s **position X,** how far to the left or right
+        - It’s **position Y,** how high up is it
+        - It’s **velocity $\dot x$,** how fast is it moving in the horizontal directions
+        - It’s **velocity** $\dot y$,how fast is it moving in the vertical directions
+        - It’s **angle** $\theta$, how far is the lunar lander tilted to the left or tilted to the right
+        - It’s **angular velocity** $\dot \theta$,
+        - $l$ and $r$, Which corresponds to whether the **left leg** or **right leg** is sitting on the ground because a small difference in **positioning** makes a big difference in whether or not it's landed. $l$  and $r$ will be **binary** valued and can take on only values **zero** or **one.**
+    
+    ![Untitled](images/Untitled%2084.png)
+    
+    - You find when you're building your own **reinforcement learning** application, It usually takes some thought to specify exactly what you want or don't want and to codify that in the **reward** function.
+    - To incentivize more of the behaviors you want and fewer of the behaviors like crashing that you don't want.
+    - specifying the **reward** function should still turn out to be much easier to specify the exact right **action** to take from every single **state**. Which is much harder for this and many other reinforcement learning applications.
+    
+    ![Untitled](images/Untitled%2085.png)
+    
+- How to learn the **State-value function** using **neural networks**?
+    
+    ![Untitled](images/Untitled%2086.png)
+    
+    - The heart of the learning algorithm is we're going to train a neural network that **inputs** the current **state** and the current **action** and computes or approximates $Q(s,a)$.
+    - For the **Lunar Lander**, we're going to take the **state $s$**  and any **action** $a$  and put them together.
+        - The **state** was that list of **eight** numbers that we saw previously.
+        - we have **four** possible **actions.** We can encode any of those **four actions** using a **one-hot feature vector**.
+    - **Reinforcement learning** is different from **supervised learning**, we're not going to **input** a **state** and have it **output** an action. Instead we're going to **input** a **state action** pair and have it try to **output** $Q(s,a)$.
+    - In order to train a **neural network** to output $Q(s,a)$, We will use ****************************************Bellman’s equation**************************************** to create a training set with lots of examples, **x** and **y.**
+    - Then we'll use **supervised learning t**o learn a mapping from **x** to **y,** that is a mapping from the **state action** pair to this **target** value $Q(s,a)$.
+    
+    ![Untitled](images/Untitled%2087.png)
+    
+    - To get the **training set** with values for **x** and **y** that you can then train a **neural network** on, We're going to use the **lunar lander** and just try taking different **actions** in it. If we don't have a good **policy** yet, we'll take **actions randomly.**
+    - This will give us $(s,a,R(s),s')$ tuple.
+    - To Create a single training example , We will use the first two elements in this tuple to compute $x^n$ and the second two elements would be used to compute $y^n$.
+    - Initially we don't know what is the **Q** **function**, So we can start off with taking a totally **random** guess of What is the **Q function.**
+    
+    ![Untitled](images/Untitled%2088.png)
+    
+    - This is the full algorithm for learning the **Q function**.
+    - To make sure we don't end up using excessive computer memory, common practice is to just remember the **10,000** most recent such tuples that we saw taking **actions** in the **MDP**.
+    - This technique of storing the most recent examples only is sometimes called the **replay buffer** in **reinforcement learning algorithm.**
+    - It turns out that if you run this algorithm where you start with a really random guess of the **Q function**, then use **Bellman's equations** to repeatedly try to improve the estimates of the **Q function**. Then by doing this over and over, taking lots of **actions**, **training** a **model**, that will improve your guess for the **Q function**.
+    - The algorithm you just saw is sometimes called the **DQN algorithm** which stands for **Deep Q-Network** because you're using **deep learning** and **neural network** to train a model to learn the **Q functions**.
+- How can we apply **algorithm refinement** to this **reinforcement learning** **algorithm**?
+    1. Improving the **neural network architecture.**
+        - It turns out that there's a change to **neural network architecture** that make this algorithm much more **efficient**.
+        
+        ![Untitled](images/Untitled%2089.png)
+        
+        - For **lunar lander**, each **input** consists of a vector of **12** numbers $[s,a]$  and **output** $Q(s,a)$, Whenever we are in some **state** $s$, we would have to carry out **inference** in the **neural network** separately **four times** one for each **action $a$** to pick the one that gives us the largest **Q** value.
+        - This is **inefficient** because we have to carry our **inference four** times from every single **state**.
+        - Instead, it turns out to be more efficient to **train** a single **neural network** to compute simultaneously the **Q** value for all **four** possible **actions** for when we are in the **state** $s$.
+        - This turns out to be more **efficient** because given the **state** $s$  we can run **inference** just once and get all **four** of these values, and then very quickly pick the **action** $a$  that maximizes $Q(s,a)$.
+        - This **neural network** also makes it much more efficient to compute this because we're getting $Q(s',a')$ for all **actions** $a'$ at the same time. You can then just pick the **max** to compute this value for the right-hand side of **Bellman's equations**.
+    2. Using **Epsilon-greedy policy:**
+        
+        ![Untitled](images/Untitled%2090.png)
+        
+        - One of the steps in the algorithm is to take **actions** in the **lunar lander**. When the learning algorithm is still running, we don't really know what's the best **action** to take in every **state**.
+        - **Option** 1: When you're in some **state** $s$, we might not want to take actions totally at **random** because that will often be a **bad action**. One natural option would be to pick whenever in **state** $s$, pick an action a that maximizes $Q(s,a)$.
+        - **Option** 2: most of the time we try to pick a good **action** using our current guess of $Q(s,a)$. But the small fraction of the time, we'll pick an **action a randomly**.
+        - We want to occasionally pick an **action randomly** Because of the **random initialization** of $Q(s,a)$, If the **neural network** somehow initially gets **stuck** in this mind that some things are bad idea, just by chance,
+            - Then option 1, it means that it will never try out those actions and discover that maybe is actually a good idea to take that action
+            - Under option 2 on every step, we have some small **probability** of trying out different **actions** so that the **neural network** can learn to overcome its own possible **preconceptions** about what might be a bad idea that turns out not to be the case.
+        - **Exploration** versus **exploitation trade-off** refers to how often do you take **actions randomly** versus trying to maximize your return by say, taking the action that maximizes $Q(s,a)$.
+        - **Option** 2 is called an **Epsilon-greedy policy.**
+        - Another trick that's sometimes used in **reinforcement learning** is to start-off **Epsilon high**. Initially, you are taking random actions a lot at a time and then **gradually decrease** it, so that over time you are less likely to take actions **randomly** and more likely to use your improving estimates of the **Q-function** to pick good **actions**.
+    3. Using **mini-batches**:
+        - This turns out to be an idea that can both speedup your **reinforcement learning** and **supervised learning algorithm**.
+        - When the **training set** size is very large, The **gradient descent** algorithm turns out to be quite slow. The idea of **mini-batch gradient** **descent** is to not use all the **training dataset** on every single iteration through this loop. Instead, we pick a smaller set of **training examples** on every step.
+        
+        ![Untitled](images/Untitled%2091.png)
+        
+        - **Mini-batch learning algorithm** on average will tend toward the **global minimum**, not reliably and somewhat noisily, but every iteration is much more **computationally inexpensive.**
+        - **Mini-batch learning** or **mini-batch gradient** descent turns out to be a much faster algorithm when you have a very **large training** set.
+        
+        ![Untitled](images/Untitled%2092.png)
+        
+    4. using **Soft-updates**:
+        - This will help your **reinforcement learning algorithm** do a better job to **converge** to a good solution.
+        
+        ![Untitled](images/Untitled%2093.png)
+        
+        - The **soft update** method helps to prevent $Q_{new}$  from getting worse through just one unlucky step.
+        - Whenever we train a new neural network $W_{new}$ $B_{new}$, we're only going to accept a little bit of the new value.
+- **Reinforcement learning** is more finicky in terms of the choice of hyper parameters  compared to **supervised learning**.
+    - For example, in **supervised learning**, if you set the learning rate a little bit too small, Maybe it takes three times as long to train.
+    - Whereas in **reinforcement learning**, find that if you set the value of **Epsilon** not quite as well, or set other parameters not quite as well, It may take 10 times or a 100 times as long to learn.
+
+![Untitled](images/Untitled%2094.png)
