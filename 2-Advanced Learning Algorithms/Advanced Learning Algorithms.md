@@ -100,6 +100,16 @@ Let’s dive even deeper, lets see how things work under the hood within **NumPy
 
 ---
 
+## Back Propagation
+
+- **Back Propagation** is an efficient way to compute **derivatives**, We sequence it as a **right-to-left** calculation.
+- **Back Propagation** is done using the **computation graph** to compute the derivatives.
+
+    ![Alt text](images/Untitled%2058.png)
+    ![Alt text](images/Untitled%2059.png)
+
+---
+
 ## TensorFlow Implementation
 
 - **Inference** with **TensorFlow**:
